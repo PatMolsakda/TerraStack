@@ -29,10 +29,6 @@ Always destroy resources when not in use to avoid unexpected charges:
 terraform destroy
 ```
 
-## Architecture
-
-[Add your draw.io diagram here]
-
 ## Tech Stack
 
 - Terraform
@@ -40,3 +36,7 @@ terraform destroy
 - AWS EC2
 - AWS S3
 - AWS IAM
+
+## Architecture
+
+![Architecture](architecture.png)
