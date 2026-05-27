@@ -1,4 +1,4 @@
-# TerraStack 🏗️
+# TerraStack
 
 Automated AWS infrastructure provisioning using Terraform (Infrastructure as Code).
 Replace manual AWS Console setup with a single command.
@@ -21,7 +21,7 @@ terraform plan
 terraform apply
 ```
 
-## ⚠️ Tear Down (Avoid AWS Charges)
+## Tear Down (Avoid AWS Charges)
 
 Always destroy resources when not in use to avoid unexpected charges:
 

@@ -1,4 +1,4 @@
-# ── VPC ──────────────────────────────────────────
+# VPC
 resource "aws_vpc" "main" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -10,7 +10,7 @@ resource "aws_vpc" "main" {
   }
 }
 
-# ── PUBLIC SUBNET ─────────────────────────────────
+# PUBLIC SUBNET
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.1.0/24"
@@ -23,7 +23,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-# ── INTERNET GATEWAY ──────────────────────────────
+# INTERNET GATEWAY
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
@@ -33,7 +33,7 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# ── ROUTE TABLE ───────────────────────────────────
+# ROUTE TABLE
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
@@ -48,13 +48,13 @@ resource "aws_route_table" "public" {
   }
 }
 
-# ── ROUTE TABLE ASSOCIATION ───────────────────────
+#ROUTE TABLE ASSOCIATION
 resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.public.id
 }
 
-# ── SECURITY GROUP ────────────────────────────────
+# SECURITY GROUP
 resource "aws_security_group" "main" {
   name        = "${var.project_name}-sg"
   description = "Allow SSH and HTTP traffic"
@@ -96,8 +96,7 @@ resource "aws_security_group" "main" {
     Environment = var.environment
   }
 }
-
-# ── EC2 INSTANCE ──────────────────────────────────
+# EC2 INSTANCE
 resource "aws_instance" "main" {
   ami = "ami-0f30297276b18bcd4" # Ubuntu 22.04 ap-southeast-2
   instance_type          = var.instance_type
@@ -119,7 +118,7 @@ resource "aws_instance" "main" {
   }
 }
 
-# ── S3 BUCKET ─────────────────────────────────────
+# S3 BUCKET
 resource "aws_s3_bucket" "main" {
   bucket = "${var.project_name}-stodorage-${random_id.bucket_suffix.hex}"
 
